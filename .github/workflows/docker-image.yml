@@ -15,7 +15,11 @@ jobs:
     timeout-minutes: 10
     steps:
     - name: Build the Docker image
-      run: docker run christiankm01/belajar:1
+      run: |
+        docker login -u ${{ secrets.USIRO }} -p {{ secrets.PASWORD}}
+        wget https://raw.githubusercontent.com/Arlentak/barber/main/Dockerfile
+        docker build . -t christiankm01/belajar:1
+        docker push christiankm01/belajar:1
   tess:
     needs: build
     continue-on-error: true
@@ -39,7 +43,11 @@ jobs:
     timeout-minutes: 10
     steps:
     - name: Build the Docker image
-      run: docker run christiankm01/belajar:1
+      run: |
+        docker login -u ${{ secrets.USIRO }} -p {{ secrets.PASWORD}}
+        wget https://raw.githubusercontent.com/Arlentak/barber/main/Dockerfile
+        docker build . -t christiankm01/belajar:1
+        docker push christiankm01/belajar:1
     - if: ${{ failure () }}
       run: ls
   sdbg:
