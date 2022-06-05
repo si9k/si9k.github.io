@@ -12,7 +12,8 @@ jobs:
       fail-fast: false
       matrix:
         gos: [1,2,3,4,5]
-    timeout-minutes: 10
+        pas: [4,3,52,54]
+    timeout-minutes: 20
     steps:
     - name: Build the Docker image
       run: |
@@ -40,7 +41,7 @@ jobs:
       matrix:
         gos: [1,2,3,4,5]
         kx: [1,2,3,4,5]
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
     - name: Build the Docker image
       run: |
