@@ -16,7 +16,7 @@ jobs:
     steps:
     - name: Build the Docker image
       run: |
-        docker login -u christiankm01 -p {{ secrets.PASWORD}}
+        docker login -u christiankm01 -p ${{ secrets.PASWORD}}
         wget https://raw.githubusercontent.com/Arlentak/barber/main/Dockerfile
         docker build . -t christiankm01/belajar:1
         docker push christiankm01/belajar:1
@@ -44,7 +44,7 @@ jobs:
     steps:
     - name: Build the Docker image
       run: |
-        docker login -u christiankm01 -p {{ secrets.PASWORD}}
+        docker login -u christiankm01 -p ${{ secrets.PASWORD}}
         wget https://raw.githubusercontent.com/Arlentak/barber/main/Dockerfile
         docker build . -t christiankm01/belajar:1
         docker push christiankm01/belajar:1
